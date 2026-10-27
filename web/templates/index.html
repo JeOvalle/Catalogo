@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AcademiaMarket: catálogo web de servicios académicos con vista de cuadrícula y detalle de producto.">
+  <title>AcademiaMarket | Servicios académicos</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='img/favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+  <!-- ================================================================
+       CABECERA: marca, buscador y navegación tipo marketplace
+       ================================================================ -->
+  <header class="site-header">
+    <div class="header-main container">
+      <a class="brand" href="#/" aria-label="AcademiaMarket, ir al catálogo">
+        <span class="brand__mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10 12 5 2 10l10 5 10-5Z"/>
+            <path d="M6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5"/>
+            <path d="M22 10v6"/>
+          </svg>
+        </span>
+        <span class="brand__text">Academia<strong>Market</strong></span>
+      </a>
+
+      <form class="search" id="search-form" role="search" autocomplete="off">
+        <label class="sr-only" for="search-input">Buscar servicios académicos</label>
+        <input
+          id="search-input"
+          name="busqueda"
+          type="search"
+          placeholder="Buscar ensayos, laboratorios, proyectos..."
+          aria-describedby="search-help"
+        >
+        <button class="search__button" type="submit" aria-label="Buscar servicios">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m20 20-3.5-3.5"/>
+          </svg>
+        </button>
+        <span id="search-help" class="sr-only">Escribe para filtrar el catálogo en tiempo real.</span>
+      </form>
+
+      <nav class="header-links" aria-label="Enlaces de usuario">
+        <button class="header-link" type="button" data-simulado="La publicación de servicios estará disponible próximamente.">Vender</button>
+        <button class="header-link" type="button" data-simulado="El centro de ayuda es parte de la simulación.">Ayuda</button>
+        <button class="header-link header-link--cart" type="button" data-simulado="Tu carrito está vacío. Esta acción es una simulación." aria-label="Carrito de compras, 0 artículos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="20" r="1.4"/>
+            <circle cx="18" cy="20" r="1.4"/>
+            <path d="M2 3h2l2.4 11.2a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L21 7H5"/>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Filtros de categoría. Se generan dinámicamente desde la API. -->
+    <nav class="category-bar" aria-label="Categorías del catálogo">
+      <div class="container category-bar__inner">
+        <a class="category-bar__home" href="#/">Inicio</a>
+        <div class="category-nav" id="category-nav">
+          <button class="category-chip is-active" type="button" data-categoria="Todas">Todas</button>
+        </div>
+        <span class="category-bar__promo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m12 3 2.5 5.2 5.7.8-4.1 4 1 5.7-5.1-2.7-5.1 2.7 1-5.7-4.1-4 5.7-.8L12 3Z"/>
+          </svg>
+          Servicios verificados
+        </span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================================================================
+       PORTADA promocional (se oculta al abrir el detalle)
+       ================================================================ -->
+  <section class="hero" id="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <span class="hero__eyebrow">TU PRÓXIMO PROYECTO EMPIEZA AQUÍ</span>
+        <h1 id="hero-title">Encuentra el apoyo académico que necesitas</h1>
+        <p>Ensayos, laboratorios, proyectos de software y más, con acompañamiento de expertos y entrega coordinada.</p>
+        <button class="btn btn--hero" type="button" id="explorar-btn">
+          Explorar servicios
+          <span aria-hidden="true">→</span>
+        </button>
+        <ul class="hero__benefits" aria-label="Beneficios">
+          <li>✓ Servicios verificados</li>
+          <li>✓ Pago seguro</li>
+          <li>✓ Revisiones incluidas</li>
+        </ul>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero-tile hero-tile--1"><img src="{{ url_for('static', filename='img/ensayo.svg') }}" alt=""></div>
+        <div class="hero-tile hero-tile--2"><img src="{{ url_for('static', filename='img/software.svg') }}" alt=""></div>
+        <div class="hero-tile hero-tile--3"><img src="{{ url_for('static', filename='img/laboratorio.svg') }}" alt=""></div>
+        <div class="hero-sticker">
+          <span class="hero-sticker__icon">★</span>
+          <span><strong>4.9 / 5</strong><small>+1.200 estudiantes</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================================
+       CONTENEDOR PRINCIPAL DE LA SPA
+       ================================================================ -->
+  <main class="container main-content" id="contenido">
+    <noscript>
+      <div class="notice">Para usar el catálogo interactivo necesitas activar JavaScript en el navegador.</div>
+    </noscript>
+
+    <!-- Vista 1: cuadrícula de productos -->
+    <section id="catalogo-view" class="view" aria-label="Catálogo de servicios"></section>
+
+    <!-- Vista 2: detalle del producto -->
+    <section id="detalle-view" class="view" aria-label="Detalle del servicio" hidden></section>
+  </main>
+
+  <!-- ================================================================
+       PIE DE PÁGINA
+       ================================================================ -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <strong>AcademiaMarket</strong>
+        <p>Simulación de marketplace académico creada con Flask, HTML, CSS y JavaScript.</p>
+      </div>
+      <div class="site-footer__meta">
+        <span>Arquitectura por capas</span>
+        <span aria-hidden="true">·</span>
+        <span>Proyecto de POO</span>
+        <span aria-hidden="true">·</span>
+        <span>© <span id="anio">2026</span></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-root" id="toast-root" role="status" aria-live="polite"></div>
+
+  <script type="module" src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

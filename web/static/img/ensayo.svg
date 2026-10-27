@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="titulo">
+  <title id="titulo">Ensayo académico</title>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6d5dfc"/>
+      <stop offset="1" stop-color="#31249b"/>
+    </linearGradient>
+    <linearGradient id="papel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e7e5ff"/>
+    </linearGradient>
+    <pattern id="puntos" width="42" height="42" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#ffffff" opacity="0.14"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#fondo)"/>
+  <rect width="800" height="600" fill="url(#puntos)"/>
+  <circle cx="690" cy="85" r="150" fill="#ffffff" opacity="0.08"/>
+  <circle cx="95" cy="550" r="190" fill="#ffffff" opacity="0.06"/>
+  <g transform="translate(235 105) rotate(-4)">
+    <rect width="330" height="390" rx="18" fill="url(#papel)"/>
+    <rect x="42" y="50" width="210" height="16" rx="8" fill="#37309b" opacity="0.85"/>
+    <rect x="42" y="88" width="245" height="9" rx="4.5" fill="#bcb9ea"/>
+    <rect x="42" y="112" width="220" height="9" rx="4.5" fill="#bcb9ea"/>
+    <rect x="42" y="136" width="238" height="9" rx="4.5" fill="#bcb9ea"/>
+    <rect x="42" y="176" width="245" height="9" rx="4.5" fill="#d8d6f4"/>
+    <rect x="42" y="200" width="228" height="9" rx="4.5" fill="#d8d6f4"/>
+    <rect x="42" y="224" width="240" height="9" rx="4.5" fill="#d8d6f4"/>
+    <rect x="42" y="248" width="190" height="9" rx="4.5" fill="#d8d6f4"/>
+    <rect x="42" y="288" width="245" height="9" rx="4.5" fill="#e2e0f8"/>
+    <rect x="42" y="312" width="210" height="9" rx="4.5" fill="#e2e0f8"/>
+  </g>
+  <g transform="translate(535 330) rotate(36)">
+    <rect width="36" height="190" rx="14" fill="#ffd34d"/>
+    <path d="M0 0 L18 -38 L36 0 Z" fill="#f4b400"/>
+    <rect x="0" y="150" width="36" height="40" fill="#ff8fa3"/>
+  </g>
+  <text x="400" y="558" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700" fill="#ffffff" opacity="0.9" letter-spacing="7">ENSAYO</text>
+</svg>

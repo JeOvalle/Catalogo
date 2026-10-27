@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="titulo">
+  <title id="titulo">Tutoría especializada</title>
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f59e0b"/>
+      <stop offset="1" stop-color="#b45309"/>
+    </linearGradient>
+    <pattern id="puntos" width="42" height="42" patternUnits="userSpaceOnUse">
+      <circle cx="4" cy="4" r="2" fill="#ffffff" opacity="0.15"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#fondo)"/>
+  <rect width="800" height="600" fill="url(#puntos)"/>
+  <circle cx="690" cy="85" r="150" fill="#ffffff" opacity="0.08"/>
+  <circle cx="95" cy="545" r="185" fill="#ffffff" opacity="0.06"/>
+  <g transform="translate(155 135)">
+    <path d="M65 145 L245 45 L425 145 L245 245 Z" fill="#1f2937"/>
+    <path d="M125 185 V285 Q245 355 365 285 V185 L245 245 Z" fill="#ffffff" opacity="0.95"/>
+    <path d="M425 145 V260" stroke="#fbbf24" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="425" cy="278" r="16" fill="#fbbf24"/>
+    <rect x="205" y="245" width="80" height="14" rx="7" fill="#f59e0b" opacity="0.55"/>
+  </g>
+  <g transform="translate(505 310)">
+    <path d="M0 35a35 35 0 0 1 35-35h175a35 35 0 0 1 35 35v85a35 35 0 0 1-35 35H95l-52 46 10-46H35A35 35 0 0 1 0 120Z" fill="#ffffff"/>
+    <circle cx="70" cy="82" r="10" fill="#f59e0b"/>
+    <circle cx="122" cy="82" r="10" fill="#f59e0b"/>
+    <circle cx="174" cy="82" r="10" fill="#f59e0b"/>
+  </g>
+  <text x="400" y="558" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="700" fill="#ffffff" opacity="0.9" letter-spacing="6">TUTORÍA</text>
+</svg>
