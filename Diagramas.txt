@@ -1,0 +1,94 @@
+Diagrama de Clases
+@startuml
+skinparam classAttributeIconSize 0
+skinparam backgroundColor #FFFFFF
+skinparam ArrowColor #333333
+skinparam ClassBackgroundColor #F8F9FA
+skinparam ClassBorderColor #343A40
+
+package "Backend (Python / Flask)" {
+    class CategoriaProducto {
+        + int id
+        + String nombre
+        + String descripcion
+        + float precio_promedio
+        + String url_imagen
+        + to_dict()
+    }
+
+    interface ICatalogoServicioPython {
+        {abstract} + obtener_todos()
+        {abstract} + buscar_por_id(id)
+        {abstract} + registrar_producto(producto)
+        {abstract} + eliminar_producto(id)
+    }
+
+    class CatalogoServicioMemoria {
+        - List<CategoriaProducto> productos
+        + obtener_todos()
+        + buscar_por_id(id)
+        + registrar_producto(producto)
+        + eliminar_producto(id)
+    }
+
+    ICatalogoServicioPython <|.. CatalogoServicioMemoria : implementa
+    CatalogoServicioMemoria o-- CategoriaProducto : gestiona
+}
+
+package "Frontend (JavaScript SPA)" {
+    interface ICatalogoServicioJS {
+        {abstract} obtenerTodos()
+        {abstract} buscarPorId(id)
+    }
+
+    class CatalogoApiServicio {
+        + obtenerTodos()
+        + buscarPorId(id)
+    }
+
+    class VistaCuadricula {
+        - ICatalogoServicioJS servicio
+        + renderizar()
+        + seleccionarProducto(id)
+    }
+
+    class VistaDetalleProducto {
+        - Object producto
+        + renderizarDetalle()
+    }
+
+    ICatalogoServicioJS <|.. CatalogoApiServicio : implementa
+    VistaCuadricula --> ICatalogoServicioJS : usa
+    VistaCuadricula ..> VistaDetalleProducto : navega
+}
+
+CatalogoApiServicio ..> "REST API" : HTTP GET / JSON
+@enduml
+
+Diagrama de componentes
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam ComponentStyle rectangle
+
+node "Navegador Web (Cliente)" {
+    [SPA Router (app.js)] as Router
+    [Vista Cuadrícula] as VGrid
+    [Vista Detalle] as VDetail
+    [Servicio API (Frontend)] as SvcJS
+    
+    Router --> VGrid
+    VGrid --> VDetail
+    VGrid --> SvcJS
+}
+
+node "Servidor (Backend Python)" {
+    [Flask API REST] as API
+    [Inyección de Dependencias] as DI
+    [Servicio de Memoria] as SvcPy
+    
+    API --> DI
+    DI --> SvcPy
+}
+
+SvcJS ..> API : HTTP JSON (GET / POST / DELETE)
+@enduml
